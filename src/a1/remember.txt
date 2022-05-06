@@ -1,0 +1,57 @@
+// const arr = subjects.map(item => <p key={item.subjectId}>Name: {item.subjectName}</p>)
+
+/*
+<div className="subjects">
+        {subjects.map((item) => (
+        <div key={item.subjectId} className='Team-Box'>
+            <img src={require(`../images/${item.filePath}`)} alt="jhh" width={60} />
+            <h2>{item.subjectName}</h2>
+        </div>
+        ))}
+    </div>
+*/
+
+
+//{subjects.map((item) => (<Subject key={item.id} item={item} />))}
+/*
+<Grid container spacing={2} className="subjects">
+        <Grid item xs={1} className="subject">
+        {subjects.map((item) => (<Subject key={item.id} item={item} />))}
+        </Grid>
+      </Grid>
+*/
+
+
+/*
+.top-navigation {
+    background-color: #b422f3;
+    background-color: #7015a5;
+}
+.top-navigation Typography {
+    text-align: left;
+    padding-left: 3%;
+}
+*/
+
+
+/*
+<div className="subjects">
+    {subjects.map((item) => (
+      <div key={item.subjectId} className='Team-Box'>
+        <img src={require(`../images/${item.filePath}`)} alt="jhh" width={60} />
+        <h2>{item.subjectName}</h2>
+      </div>
+    ))}
+*/
+
+// const fileName = "math"
+// <img src={require("../images/" + fileName + ".png")} />
+// <img src={require(`../images/${fileName}.png`)} />
+// <img src={im2} alt="ghgh" />
+
+// console.log("subjects parse", JSON.parse(response.data));
+// console.log("subjects stringify", JSON.stringify(response.data));
+// console.log("subjects stringify", JSON.stringify(JSON.stringify(response.data)));
+// console.log("subjects parse", JSON.parse(JSON.stringify(response.data)));
+// console.log("subjects", response.data);
+// const arr = subjects.map(item => <div key={item.subjectId}>Name: {item.subjectName} Image : <img src={require("../images/" + {item.subjectName} + ".png")} /> </div>)

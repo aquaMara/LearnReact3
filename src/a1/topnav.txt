@@ -1,0 +1,108 @@
+import React from "react";
+import { Box } from "@mui/system";
+import { AppBar, Toolbar, Typography } from "@mui/material";
+import { Avatar } from "@mui/material";
+import "../styles/Home.css";
+import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+import { Menu } from "@mui/material";
+import { MenuItem } from "@mui/material";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+
+function TopNavigation() {
+
+  const { auth } = useAuth();
+  const [currentUser, setCurrentUser] = useState();
+  const axiosPrivate = useAxiosPrivate();
+
+  console.log("auth in account", auth.username);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const getCurrentUserAccount = async () => {
+    try {
+      // const response = await axiosPrivate.get(`/users/?${username}` );
+      console.log("auth.username", auth.username);
+      const response = await axiosPrivate.get("/users/username/" + auth.username);
+      console.log("response in account", response);
+      console.log("current user >>", response.data);
+      setCurrentUser(response.data);
+
+    }  catch (err) {
+        if (!err?.response) {
+            console.log("No error response");
+        } else if(err.response?.status === 403) {
+            console.log("Invalid username or password");
+        } else if(err.response?.status === 500) {
+            console.log("Unauthorized");
+        } else {
+            console.log("Login failed")
+        }
+    }
+  }
+
+  useEffect(() => {
+    getCurrentUserAccount();
+  }, {})
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar  className="top-navigation">
+            <Typography className="top-navigation--text" variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Learning Spring and React
+            </Typography>
+            <Button
+              id="basic-button"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClick}
+            >
+              <Avatar className="top-navigation--avatar">me</Avatar>
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              {currentUser &&
+              <div>
+              <MenuItem onClick={handleClose}>{currentUser.name}</MenuItem>
+              <MenuItem onClick={handleClose}>{currentUser.username}</MenuItem>
+              <MenuItem onClick={handleClose}>{currentUser.email}</MenuItem>
+              </div>
+              }
+            </Menu>
+            
+          </Toolbar>
+        </AppBar>
+    </Box>
+  )
+}
+
+export default TopNavigation
+
+/*
+<Link to={`/user/account/${auth.username}`} className="link">
+              <Avatar className="top-navigation--avatar">me</Avatar>
+            </Link>
+// <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
+*/

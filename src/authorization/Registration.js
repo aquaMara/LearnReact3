@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "../api/axios";
+import { Link } from "react-router-dom";
+import Login from "./Login";
 
 export default function Registration() {
 
@@ -45,7 +47,7 @@ export default function Registration() {
                 <section>
                     <h1>You are successfully registered!</h1>
                     <p>
-                        <a href="#">Sign In</a>
+                        <Link to="/login" element={<Login />}>Login</Link>
                     </p>
                 </section>
             )

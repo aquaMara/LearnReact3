@@ -1,0 +1,97 @@
+.container--subjects, .container--articles {
+    justify-content: center;
+    height: 100vh;
+    background-color: #cdd1fd;
+    padding: 3%;
+}
+
+.container--sections, .container--article {
+    justify-content: center;
+    height: 100vh;
+    background-color: #9dd0ea;
+    padding: 3%;
+}
+
+.box--subjects, .box--sections, .box--articles {
+    padding: 0px;
+    border-radius: 25px;
+}
+
+.box--subjects:hover, .box--articles:hover {
+    background-color: #9dd0ea;
+}
+
+.box--sections:hover {
+    background-color: #cdd1fd;
+}
+
+.box--subjects img {
+    display: inline-block;
+    float: left;
+}
+
+.box--subjects h4, .box--sections h4 {
+    display: inline-block;
+}
+
+.box--articles h4 {
+    margin-bottom: 0;
+}
+
+.box--articles p {
+    margin-top: 0;
+}
+
+.box--subjects p, .box--sections p {
+    margin: 0;
+}
+.MuiGrid-root, .MuiGrid-item, .MuiGrid-grid-xs-4, .MuiGrid-grid-sm-4, .MuiGrid-grid-md-3, .css-g04lnj-MuiGrid-root{
+    padding: 0;
+}
+/* ***************************************************************** */
+.container--article {
+    height: auto;
+}
+.container--article--card {
+    justify-content: center;
+    display: inline-block;
+}
+
+.article--info {
+    width: max-content;
+    text-align: justify;
+    float: right;
+    margin-bottom: 1%;
+}
+
+.article--info--element {
+    display: inline;
+}
+
+.article--info--element h7 {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.article--content {
+    display: inline-block;
+    text-align: justify;
+}
+
+/*
+body {
+    background-color: #c7e2d9;
+    background-color: #ddebea;
+    background-color: #e8ccff;
+    background-color: #8cb6a8;
+    background-color: #fdcdbd;
+    background-color: #dfc9e2;
+    background-color: #9dd0ea;
+    background-color: #459ec9;
+    background-color: #be7bb8;
+    background-color: #be7bb8;
+    background-color: #cdd1fd;
+    background-color: #b8eac7;
+    background-color: #9cd0b3;
+    background-color: #c3f1d3;
+}
+*/

@@ -1,0 +1,15 @@
+.author--container {
+    padding-top: 3%;
+}
+
+.author--card {
+    min-width: fit-content;
+    width: 30%;
+    height: 10vh;
+    min-height: fit-content;
+    text-align: initial;
+    padding-left: 1%;
+    padding-top: 1%;
+    color: #7015a5;
+    background-color: #9dd0ea;
+}
