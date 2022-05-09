@@ -18,6 +18,14 @@ import Subjects from './components/admin/Subjects';
 import Login2 from './authorization/Login2';
 import Registration2 from './authorization/Registration2';
 
+import RequireAuth from './components/RequireAuth';
+
+const ROLES = {
+  "Teacher": "ROLE_STUDENT",
+  "Student": "ROLE_TEACHER",
+  "Admin": "ROLE_ADMIN"
+}
+
 function App() {
   return (
     <div className="App">
@@ -25,22 +33,26 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="/login" element={<Login2 />} />
         <Route path="/register" element={<Registration2/>} />
-        <Route path="/home/" element={<Layout />}> 
-          <Route index element={<SubjectGrid />} />
-          <Route path="/home/subjects/:subjectId" element={<SectionGrid />} />
-          <Route path="/home/sections/:sectionId" element={<ArticleGrid />} />
-          <Route path="/home/articles/:articleId" element={<Article />} />
-          <Route path="/home/articles/edit/:articleId" element={<EditArticle />} />
-          <Route path="/home/articles/create" element={<CreateArticle />} />
-          <Route path="/home/account/:username" element={<Account />} />
-          <Route path="/home/author/:userId" element={<Author />} />
+
+        <Route element={<RequireAuth allowedRoles={["ROLE_STUDENT", "ROLE_TEACHER"]} /> }>
+          <Route path="/home/" element={<Layout />}> 
+            <Route index element={<SubjectGrid />} />
+            <Route path="/home/subjects/:subjectId" element={<SectionGrid />} />
+            <Route path="/home/sections/:sectionId" element={<ArticleGrid />} />
+            <Route path="/home/articles/:articleId" element={<Article />} />
+            <Route path="/home/articles/edit/:articleId" element={<EditArticle />} />
+            <Route path="/home/articles/create" element={<CreateArticle />} />
+            <Route path="/home/account/:username" element={<Account />} />
+            <Route path="/home/author/:userId" element={<Author />} />
+          </Route>
         </Route>
-        <Route path="/admin/subjects" element={<Subjects />} />
-        <Route path="/admin/subjects/:subjectId" element={<EditSubject />} />
-        
-        
-    
-      </Routes>
+
+        <Route element={<RequireAuth allowedRoles={["ROLE_ADMIN"]} /> }>
+          <Route path="/admin/subjects" element={<Subjects />} />
+          <Route path="/admin/subjects/:subjectId" element={<EditSubject />} />
+        </Route>
+
+        </Routes>
     </div>
   );
 }

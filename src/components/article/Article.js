@@ -21,9 +21,14 @@ import { styled } from '@mui/material/styles';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
+import { useNavigate } from "react-router-dom";
+
 const Article = () => {
 
   const { articleId } = useParams();
+
+  const navigate = useNavigate();
+  const goBack = () => navigate(-1);
 
   const axiosPrivate = useAxiosPrivate();
   const [article, setArticle] = useState([]);
@@ -140,6 +145,7 @@ const Article = () => {
               </Typography>
             </div>
           </CardContent>
+          <Button onClick={goBack}>Go Back</Button>
         </Card>
         }
         {!article && <MissingData />}

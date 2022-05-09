@@ -119,7 +119,7 @@ const Account = () => {
         </div>
       }
       <Link to={"/home/"} className="link">
-          To all subjects
+          <Button>To all subjects</Button>
       </Link> 
     </div>
   )

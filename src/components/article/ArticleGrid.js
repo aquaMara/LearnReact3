@@ -1,11 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import TopNavigation from "../TopNavigation";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import MissingData from "../MissingData";
-import { Box } from "@mui/system";
+import { Button } from "@mui/material";
 import { Grid } from "@mui/material";
 import { Container } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -15,9 +14,14 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import "../../styles/BaseComponents.css";
 
+import { useNavigate } from "react-router-dom";
+
 const ArticleGrid = () => {
 
   const { sectionId } = useParams();
+
+  const navigate = useNavigate();
+  const goBack = () => navigate(-1);
 
   const axiosPrivate = useAxiosPrivate();
   const [articles, setArticles] = useState([]);
@@ -82,9 +86,10 @@ const ArticleGrid = () => {
           </Grid>
           ))}            
       </Grid>
+        <Button onClick={goBack}>Go Back</Button>
         <Link to={"/home/"} className="link">
-          To all subjects
-        </Link>
+          <Button>To all subjects</Button>
+        </Link> 
       </>
       )
     }

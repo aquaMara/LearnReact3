@@ -30,7 +30,9 @@ const CreateArticle = () => {
 
     const axiosPrivate = useAxiosPrivate();
     const { auth } = useAuth();
+
     const navigate = useNavigate();
+    const goBack = () => navigate(-1);
 
     const getUser = async () => {
         try {
@@ -260,6 +262,7 @@ const CreateArticle = () => {
                 { errorMessage && <Typography style={{ color: "red", paddingBottom: "100px" }} gutterBottom variant="h7">{errorMessage}</Typography> }
             </div>
             <Button style={{ marginTop: "10px" }} variant="outlined" onClick={(e) => {handleSubmit(e)}}>Create</Button>
+            <Button style={{ marginTop: "10px" }} variant="outlined"  onClick={goBack}>Go Back</Button>
         </Box>
       
     </main>

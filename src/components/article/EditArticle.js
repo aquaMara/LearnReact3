@@ -34,7 +34,9 @@ const EditArticle = () => {
 
     const axiosPrivate = useAxiosPrivate();
     const { auth } = useAuth();
+
     const navigate = useNavigate();
+    const goBack = () => navigate(-1);
 
     const getArticle = async () => {
         try {
@@ -147,6 +149,7 @@ const EditArticle = () => {
                 { errorMessage && <Typography style={{ color: "red", paddingBottom: "100px" }} gutterBottom variant="h7">{errorMessage}</Typography> }
             </div>
             <Button style={{ marginTop: "10px" }} variant="outlined" onClick={(e) => {handleSubmit(e)}}>Update</Button>
+            <Button style={{ marginTop: "10px" }} variant="outlined"  onClick={goBack}>Go Back</Button>
         </Box>
       
     </main>
