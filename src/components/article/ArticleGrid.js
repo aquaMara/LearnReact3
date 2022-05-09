@@ -9,6 +9,10 @@ import { Box } from "@mui/system";
 import { Grid } from "@mui/material";
 import { Container } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Rating } from "@mui/material";
+import { styled } from '@mui/material/styles';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import "../../styles/BaseComponents.css";
 
 const ArticleGrid = () => {
@@ -46,10 +50,17 @@ const ArticleGrid = () => {
     getArticles();
   }, [])
 
-
+  const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: '#ff6d75',
+    },
+    '& .MuiRating-iconHover': {
+      color: '#ff3d47',
+    },
+  });
 
   return (
-    <Container disableGutters maxWidth={"100%"} className="container--articles">
+    <Container disableGutters maxWidth={"100%"} style={{height: "100vh"}} className="container--articles">
       {
         articles.length === 0 ? ( <MissingData /> ) 
         : (
@@ -61,6 +72,12 @@ const ArticleGrid = () => {
               <h4>{item.heading}</h4>
               <p>******</p>
               <p>{(item.content).length <=225 ? item.content : `${ (item.content).slice(0,225) }...`}</p>
+              <StyledRating
+                name="customized-color" defaultValue={1} precision={0.5}
+                value={item.rating} readOnly
+                icon={<FavoriteIcon fontSize="inherit" />}
+                emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+              />
             </Link>
           </Grid>
           ))}            
@@ -76,3 +93,4 @@ const ArticleGrid = () => {
 }
 
 export default ArticleGrid
+// <Rating name="half-rating-read" precision={0.5} defaultValue={0} value={item.rating} readOnly />

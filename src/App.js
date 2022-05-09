@@ -38,7 +38,7 @@ function App() {
         <Route path="/admin/subjects" element={<Subjects />} />
         <Route path="/admin/subjects/:subjectId" element={<EditSubject />} />
         
-        <Route path="/user/account/:username" element={<Account />} />
+        
     
       </Routes>
     </div>
@@ -46,3 +46,4 @@ function App() {
 }
 
 export default App;
+// <Route path="/user/account/:username" element={<Account />} />

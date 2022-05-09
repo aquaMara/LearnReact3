@@ -164,7 +164,7 @@ const CreateArticle = () => {
             setSectionId("");
             setSubjectId("");
             // navigate("/home/");
-            // navigate("/home/account/" + auth.username);
+            navigate("/home/account/" + auth.username);
             } catch (err) {
             console.log(`Error in post: ${err.message}`);
             }
@@ -250,8 +250,8 @@ const CreateArticle = () => {
                 id="outlined-multiline-flexible"
                 label="Content"
                 multiline
-                rows={10}
-                style={{ width: "80%" }}
+                rows={30}
+                style={{ width: "90%"}}
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
             />
