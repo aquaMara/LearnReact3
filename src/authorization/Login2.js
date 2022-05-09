@@ -6,35 +6,27 @@ import axios from "../api/axios";
 import AuthContext from "../context/AuthProvider";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import Registration from "./Registration";
 import { Link } from "react-router-dom";
-/*
-// import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import axiosRequest from "../api/axiosRequest";
-// import AuthContext from "../context/AuthProvider";
-import useAuth from "../hooks/useAuth";
-import { useRef, useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useContext } from "react";
-import { type } from "@testing-library/user-event/dist/type";
-// TRUEEEEEEEEEEEEEEEEEEEEE
-*/
+import { Container, Box } from "@mui/material";
+import { TextField } from "@mui/material";
+import { Button } from "@mui/material";
+import { Grid } from "@mui/material";
+import { Typography } from "@mui/material";
 
-const Login = () => {
+const Login2 = () => {
 
     const { auth, setAuth } = useAuth();
 
     // const location = useLocation();
     // const from = location.state?.from?.pathname || "/";
 
-    const {register, formState: {errors, isValid}, handleSubmit, reset, watch} = useForm({mode: "onBlur"});
+    const {register, formState: {errors, isValid}, handleSubmit, reset, watch} = useForm({mode: "onChange"});
     const [errorMessage, setErrorMessage] = React.useState("");
     // const [success, setSuccess] = React.useState(false);
     const navigate = useNavigate();
 
-
-    const handleSubmitCustom = async (data) => {
+  const handleSubmitCustom = async (data) => {
+      console.log("data", data)
         try {
             const response = await axios.post("/login", 
                 data, 
@@ -81,56 +73,32 @@ const Login = () => {
         
     }
 
-
+// {errors?.username && <p>{errors?.username?.message}</p>}
     return (
-        <section>
-            <h1>LOGIN COMPONENT</h1>
-            <form onSubmit={handleSubmit(handleSubmitCustom)}>
-                <label htmlFor="username-input">Username:</label>
-                <input 
-                    {
-                        ...register("username", 
-                        {
-                            required: "Can not be empty"
-                        })
-                    }
-                    type="text"
-                    id="username-input"
+        <Container disableGutters maxWidth={"100%"} className="container--subjects">
+        <Grid container direction="column" justifyContent="center" alignItems="center">
+            <Typography className="top-navigation--text" variant="h6" component="div" sx={{ flexGrow: 1, padding: 0, color: "#7015a5", marginBottom: "10px" }}>
+              Login Page
+            </Typography>
+            <form onSubmit={handleSubmit(handleSubmitCustom)} style={{display: "grid", gridGap: "10px"}}>
+                <TextField required id="outlined-required" label="username"
+                    {...register("username", { required: "Can not be empty" })}
+                    error={!!errors?.username}
+                    helperText={errors?.username ? errors.username.message : null}
                 />
-                {errors?.username && <p>{errors?.username?.message}</p>}
-                <label htmlFor="password-input">Password:</label>
-                <input 
-                    {
-                        ...register("password", 
-                        {
-                            required: "Can not be empty"
-                        })
-                    }
+                <TextField required id="outlined-required" label="password"
+                    {...register("password", { required: "Can not be empty" })}
+                    error={!!errors?.password}
+                    helperText={errors?.password ? errors.password.message : null}
                     type="password"
-                    id="password-input"
                 />
-                {errors?.password && <p>{errors?.password?.message}</p>}
-                <button disabled={!isValid}>Sign In</button>
+                <button disabled={!isValid} style={{backgroundColor: "#9dd0ea", border: "none", padding: "6px"}}>Sign In</button>
             </form>
-            <Link to="/register" element={<Registration />}>or Sign Up</Link>
-            </section>
+            {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
+            <Link to="/register" className="link">or Sign Up</Link>
+        </Grid>
+        </Container>
     );    
 }
 
-export default Login;
-
-
-    /*
-    function handleSubmitCustom2(data) {
-        // event.preventDefault();
-        console.log("data ", data);
-        fetch("http://localhost:8080/learn/login"), {
-                method: "POST",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify(data)
-            }).then(console.log(data)).then(res => {res.json(); console.log(res)})
-            .catch((error) => console.log("error", error));
-        reset();
-        
-        }
-        */
+export default Login2

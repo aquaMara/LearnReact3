@@ -1,0 +1,45 @@
+.top-navigation {
+    background-color: #b422f3;
+    background-color: #7015a5;
+}
+
+.top-navigation--text {
+    text-align: left;
+    padding-left: 3%;
+}
+
+.top-navigation--avatar {
+    background-color: #fff;
+    color: #7015a5;
+}
+
+.container { 
+    height: 100vh;
+}
+
+input {
+    border: none;
+}
+
+:focus, :hover, :active {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.top-navigation--username {
+    color: #7015a5;
+}
+
+.top-navigation--menu button {
+    max-width: fit-content;
+}
+
+.top-navigation--menu form {
+    display: grid;
+}
+
+.link {
+    color: #7015a5;
+    text-decoration: none;
+    font-size: 15px;
+}
