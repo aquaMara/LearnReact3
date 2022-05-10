@@ -136,37 +136,3 @@ const Registration2 = () => {
 }
 
 export default Registration2;
-
-/*
-<p>I would like to:</p>
-                            <label htmlFor="field-student">
-                                <input
-                                    {
-                                        ...register("userRole", 
-                                        {
-                                            required: "Can not be empty 1st"
-                                        })
-                                    }
-                                    type="radio"
-                                    name="userRole"
-                                    value="ROLE_STUDENT"
-                                    id="field-student"
-                                />
-                                I want to be a student
-                            </label>
-                            <label htmlFor="field-teacher">
-                                <input
-                                    {
-                                        ...register("userRole", 
-                                        {
-                                        required: "Can not be empty 2nd"
-                                        })
-                                    }
-                                    type="radio"
-                                    name="userRole"
-                                    value="ROLE_TEACHER"
-                                    id="field-teacher"
-                                />
-                                I want to be a teacher
-                                </label>
-*/

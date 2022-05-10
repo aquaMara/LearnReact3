@@ -1,6 +1,4 @@
 import './App.css';
-import Registeration from './authorization/Registration';
-import Login from './authorization/Login';
 import Index from './authorization/Index';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Account from "./components/appuser/Account";
@@ -58,4 +56,3 @@ function App() {
 }
 
 export default App;
-// <Route path="/user/account/:username" element={<Account />} />

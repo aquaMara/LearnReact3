@@ -75,18 +75,3 @@ const SectionGrid = () => {
 }
 
 export default SectionGrid
-
-/*
-<Container disableGutters maxWidth={"100%"} className="container--section">
-    
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 2, md: 3 }}>
-          {sections.map((item) => (
-          <Grid item key={item.sectionId} xs={2} sm={2} md={3} className="box--section">
-            <Link to={`/home/section/${item.sectionId}`}>
-              <h4>{item.sectionName}</h4>
-            </Link>
-          </Grid>
-          ))}            
-      </Grid>
-  </Container>
-*/

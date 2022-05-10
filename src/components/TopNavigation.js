@@ -163,10 +163,3 @@ function TopNavigation() {
 }
 
 export default TopNavigation
-
-/*
-<Link to={`/user/account/${auth.username}`} className="link">
-              <Avatar className="top-navigation--avatar">me</Avatar>
-            </Link>
-// <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
-*/

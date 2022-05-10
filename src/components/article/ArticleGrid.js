@@ -98,4 +98,3 @@ const ArticleGrid = () => {
 }
 
 export default ArticleGrid
-// <Rating name="half-rating-read" precision={0.5} defaultValue={0} value={item.rating} readOnly />

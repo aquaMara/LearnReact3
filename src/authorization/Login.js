@@ -1,25 +1,10 @@
 import React from "react";
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
-// import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
-import AuthContext from "../context/AuthProvider";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import Registration from "./Registration";
 import { Link } from "react-router-dom";
-/*
-// import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import axiosRequest from "../api/axiosRequest";
-// import AuthContext from "../context/AuthProvider";
-import useAuth from "../hooks/useAuth";
-import { useRef, useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useContext } from "react";
-import { type } from "@testing-library/user-event/dist/type";
-// TRUEEEEEEEEEEEEEEEEEEEEE
-*/
 
 const Login = () => {
 
@@ -30,7 +15,6 @@ const Login = () => {
 
     const {register, formState: {errors, isValid}, handleSubmit, reset, watch} = useForm({mode: "onBlur"});
     const [errorMessage, setErrorMessage] = React.useState("");
-    // const [success, setSuccess] = React.useState(false);
     const navigate = useNavigate();
 
 
@@ -42,17 +26,14 @@ const Login = () => {
                     headers: { "Content-Type": "application/json"}
                 }
             );
-            // setSuccess(true);
             console.log("response?.data in login:", response?.data);
             console.log("response in login:", response);
-            // console.log("JSON.stringify(response) in login:", JSON.stringify(response));
             const token = response?.data?.token;
             console.log("accessToken(token) in login:", token);
             const username = response?.data?.username;
             console.log("username in login:", username);
             const role = response?.data?.role;
             console.log("role in login:", role);
-            // setAuth({ username, password, role, token});
             setAuth({ username, role, token});
             if (role === "ROLE_TEACHER" || role === "ROLE_STUDENT") {
                 navigate("/home");
@@ -60,9 +41,6 @@ const Login = () => {
             if (role === "ROLE_ADMIN") {
                 navigate("/admin/subjects");
             }
-            
-            // console.log("from in login:", from)
-            // navigate(from, { replace: true });
 
         } catch (err) {
             if (!err?.response) {
@@ -118,19 +96,3 @@ const Login = () => {
 }
 
 export default Login;
-
-
-    /*
-    function handleSubmitCustom2(data) {
-        // event.preventDefault();
-        console.log("data ", data);
-        fetch("http://localhost:8080/learn/login"), {
-                method: "POST",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify(data)
-            }).then(console.log(data)).then(res => {res.json(); console.log(res)})
-            .catch((error) => console.log("error", error));
-        reset();
-        
-        }
-        */

@@ -24,12 +24,6 @@ const EditArticle = () => {
     const [editLink, setEditLink] = useState("");
     const [editLiterature, setEditLiterature] = useState("");
 
-    const [sectionId, setSectionId] = useState("");
-    const [sections, setSections] = useState([]);
-    const [currentUser, setCurrentUser] = useState({});
-    const [subjectId, setSubjectId] = useState("");
-    const [subjects, setSubjects] = useState([]);
-
     const [errorMessage, setErrorMessage] = useState("");
 
     const axiosPrivate = useAxiosPrivate();
@@ -67,9 +61,6 @@ const EditArticle = () => {
     }
 
     useEffect(() => {
-        //getUser();
-        // getSections();
-        // getSubjects();
         getArticle();
         
     }, [])

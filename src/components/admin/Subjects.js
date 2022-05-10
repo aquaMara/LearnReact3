@@ -5,10 +5,7 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import MissingData from "../MissingData";
 import { Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Stack } from "@mui/material";
-import { Divider } from "@mui/material";
 import { Button } from "@mui/material";
-import { MenuItem } from "@mui/material";
 import { TextField } from "@mui/material";
 import { Typography } from "@mui/material";
 import { styled } from '@mui/material/styles';
@@ -74,8 +71,6 @@ const Subjects = () => {
     
             const response = await axiosPrivate.post("/subjects", subject);
             console.log("response in subjects handleSubmitSubject", response);
-            // const arr = sections.filter(item => item.sectionId !== sectionId);
-            // setSections(arr);
             getSubjects();
             setNewSubjectName("");
             setErrorMessage("");
@@ -110,8 +105,6 @@ const Subjects = () => {
             fd.append("data", file);
             const response = await axiosPrivate.post(`/subjects/upload/${subjectId}`, fd);
             console.log("response in subjects handleUpload", response);
-            // const arr = sections.filter(item => item.sectionId !== sectionId);
-            // setSections(arr);
             getSubjects();
       
           }  catch (err) {

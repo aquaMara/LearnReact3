@@ -17,7 +17,6 @@ const Account = () => {
   const [currentUser, setCurrentUser] = useState();
   const [articles, setArticles] = useState([]);
   const axiosPrivate = useAxiosPrivate();
-  // await axiosRequest.delete(`/posts/${id}`);
 
   console.log("auth in account", auth.username);
   console.log("username in account", username);
@@ -76,12 +75,6 @@ const Account = () => {
         }
     }
     
-      // await axiosRequest.delete(`/posts/${id}`);
-    //await axiosRequest.delete(`/posts/${id}`);
-    //const postsList = posts.filter(post => post.id !== id);
-    //setPosts(postsList);
-    // we are accessing the browser history and navigate to homepage when delete is completed
-    //navigate("/");
     
   }
 

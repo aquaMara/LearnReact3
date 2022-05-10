@@ -6,10 +6,7 @@ import NoData from "./NoData";
 import { useParams } from "react-router-dom";
 import { Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Stack } from "@mui/material";
-import { Divider } from "@mui/material";
 import { Button } from "@mui/material";
-import { MenuItem } from "@mui/material";
 import { TextField } from "@mui/material";
 import { Typography } from "@mui/material";
 
@@ -77,8 +74,6 @@ const EditSubject = () => {
     
             const response = await axiosPrivate.post("/sections", section);
             console.log("response in editsubject handleSubmitSection", response);
-            // const arr = sections.filter(item => item.sectionId !== sectionId);
-            // setSections(arr);
             getSubject();
             setNewSectionName("");
       

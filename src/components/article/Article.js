@@ -87,13 +87,7 @@ const Article = () => {
         }
       }
   }
-/*
-{article.rating &&
-                <Rating name="simple-controlled" value={article.rating} 
-                onChange={(event, ratingMark) => { setValue(ratingMark); }}/>
-              }
 
-*/
   const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
       color: '#ff6d75',
@@ -154,12 +148,3 @@ const Article = () => {
 }
 
 export default Article
-/*
-<CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
-          </CardActions>
-
-          <Rating name="half-rating" precision={0.5} defaultValue={2.5} value={article.rating} 
-                  onChange={(event, score) => { handleScoreChange(event, score) }}/>
-*/

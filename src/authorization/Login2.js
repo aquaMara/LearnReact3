@@ -17,12 +17,8 @@ const Login2 = () => {
 
     const { auth, setAuth } = useAuth();
 
-    // const location = useLocation();
-    // const from = location.state?.from?.pathname || "/";
-
     const {register, formState: {errors, isValid}, handleSubmit, reset, watch} = useForm({mode: "onChange"});
     const [errorMessage, setErrorMessage] = React.useState("");
-    // const [success, setSuccess] = React.useState(false);
     const navigate = useNavigate();
 
   const handleSubmitCustom = async (data) => {
@@ -34,17 +30,14 @@ const Login2 = () => {
                     headers: { "Content-Type": "application/json"}
                 }
             );
-            // setSuccess(true);
             console.log("response?.data in login:", response?.data);
             console.log("response in login:", response);
-            // console.log("JSON.stringify(response) in login:", JSON.stringify(response));
             const token = response?.data?.token;
             console.log("accessToken(token) in login:", token);
             const username = response?.data?.username;
             console.log("username in login:", username);
             const role = response?.data?.role;
             console.log("role in login:", role);
-            // setAuth({ username, password, role, token});
             setAuth({ username, role, token});
             if (role === "ROLE_TEACHER" || role === "ROLE_STUDENT") {
                 navigate("/home");
@@ -52,9 +45,6 @@ const Login2 = () => {
             if (role === "ROLE_ADMIN") {
                 navigate("/admin/subjects");
             }
-            
-            // console.log("from in login:", from)
-            // navigate(from, { replace: true });
 
         } catch (err) {
             if (!err?.response) {
@@ -73,7 +63,6 @@ const Login2 = () => {
         
     }
 
-// {errors?.username && <p>{errors?.username?.message}</p>}
     return (
         <Container disableGutters maxWidth={"100%"} className="container--subjects">
         <Grid container direction="column" justifyContent="center" alignItems="center">

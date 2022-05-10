@@ -79,31 +79,9 @@ const CreateArticle = () => {
         }
     }
 
-    const getSections = async () => {
-        try {
-            const response = await axiosPrivate.get("/sections/");
-            console.log("response in in Create Article (sections)", response);
-            console.log("current sections 1 >> in Create Article", response.data);
-            setSections(response.data);
-            console.log("current sections 2 >> in Create Article", sections);
-            
-
-        } catch(err) {
-            if (!err?.response) {
-                console.log("No error response");
-            } else if(err.response?.status === 403) {
-                console.log("Invalid username or password");
-            } else if(err.response?.status === 500) {
-                console.log("Unauthorized");
-            } else {
-                console.log("Login failed")
-            }
-        }
-    }
 
     useEffect(() => {
         getUser();
-        // getSections();
         getSubjects();
     }, [])
 
@@ -111,7 +89,6 @@ const CreateArticle = () => {
         console.log("ID", id);
         setSubjectId(id);
         setSectionId("");
-        // setSubjectId(e.target.value);
         try {
             const response = await axiosPrivate.get(`/subjects/${id}`);
             console.log("handleSubjectChange DFFGFG", response);
@@ -120,13 +97,6 @@ const CreateArticle = () => {
             if (response.data.sections.length > 0) {
                 setSections(response.data.sections);
             }
-            /*
-
-                    .then(resp => {console.log("resp", resp)})
-                    .then(resp => {console.log("resp.data.sections", resp.data.sections)})
-                    .then(resp => {setSections(resp.data.sections)})
-                    .then(console.log("SECTIONS", sections));
-            */
             
         } catch(err) {
             console.log("handleSubjectChange error", err);
@@ -158,14 +128,12 @@ const CreateArticle = () => {
             const response = await axiosPrivate.post("/articles/", newArticle);
             console.log("newArticle in CreateArticle", newArticle);
             try {
-            // const response = axiosPrivate.post("/articles", newArticle);
             setHeading("");
             setContent("");
             setLink("");
             setLiterature("");
             setSectionId("");
             setSubjectId("");
-            // navigate("/home/");
             navigate("/home/account/" + auth.username);
             } catch (err) {
             console.log(`Error in post: ${err.message}`);
@@ -270,53 +238,3 @@ const CreateArticle = () => {
 }
 
 export default CreateArticle
-
-/*
-<form className="new-article--form" onSubmit={handleSubmit}>
-        <label htmlFor="heading">Heading:</label>
-        <input
-          id="heading"
-          type="text"
-          required
-          value={heading}
-          onChange={(e) => setHeading(e.target.value)}
-        />
-        <label htmlFor="content">Content:</label>
-        <textarea
-          id="content"
-          required
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-        <label htmlFor="link">Link:</label>
-        <input
-          id="link"
-          type="text"
-          value={link}
-          onChange={(e) => setLink(e.target.value)}
-        />
-        <label htmlFor="literature">Literature:</label>
-        <input
-          id="literature"
-          type="text"
-          value={literature}
-          onChange={(e) => setLiterature(e.target.value)}
-        />
-        {subjects.length === 0 ? (<MissingData />)
-        : (
-            <>
-            <InputLabel id="subject">Country</InputLabel>
-            <Select labelId="subject" id="subject" value={subject}>
-            {subjects.map((item) => (
-                <MenuItem key={item.subjectId} value={item.subjectId}>
-                    {item.subjectName}
-                </MenuItem>
-            ))}
-            </Select>
-            </>
-        )    
-        }
-        <button>Create</button>
-      </form>
-
-*/
