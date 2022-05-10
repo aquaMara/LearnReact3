@@ -7,6 +7,7 @@ import MissingData from "../MissingData";
 import { Grid } from "@mui/material";
 import { Container } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 import "../../styles/BaseComponents.css";
 
 const SectionGrid = () => {
@@ -63,8 +64,8 @@ const SectionGrid = () => {
           ))}            
         </Grid>
         <Link to={"/home/"} className="link">
-          To all subjects
-        </Link>
+          <Button>To all subjects</Button>
+        </Link> 
        </>
       )
     }

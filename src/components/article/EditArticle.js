@@ -34,7 +34,9 @@ const EditArticle = () => {
 
     const axiosPrivate = useAxiosPrivate();
     const { auth } = useAuth();
+
     const navigate = useNavigate();
+    const goBack = () => navigate(-1);
 
     const getArticle = async () => {
         try {
@@ -87,7 +89,7 @@ const EditArticle = () => {
             const response = axiosPrivate.put(`/articles/${articleId}`, updatedArticle);
             console.log("response in handleSubmit in EditArticle", response)
             // navigate("/home/");
-            // navigate("/home/account/" + auth.username);
+            navigate("/home/account/" + auth.username);
             } catch (err) {
             console.log(`Error in post: ${err.message}`);
             }
@@ -137,8 +139,8 @@ const EditArticle = () => {
                 id="outlined-multiline-flexible"
                 label="Content"
                 multiline
-                rows={10}
-                style={{ width: "80%" }}
+                rows={25}
+                style={{ width: "90%" }}
                 value={editContent}
                 onChange={(e) => setEditContent(e.target.value)}
             />
@@ -147,6 +149,7 @@ const EditArticle = () => {
                 { errorMessage && <Typography style={{ color: "red", paddingBottom: "100px" }} gutterBottom variant="h7">{errorMessage}</Typography> }
             </div>
             <Button style={{ marginTop: "10px" }} variant="outlined" onClick={(e) => {handleSubmit(e)}}>Update</Button>
+            <Button style={{ marginTop: "10px" }} variant="outlined"  onClick={goBack}>Go Back</Button>
         </Box>
       
     </main>

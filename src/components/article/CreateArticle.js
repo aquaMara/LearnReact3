@@ -30,7 +30,9 @@ const CreateArticle = () => {
 
     const axiosPrivate = useAxiosPrivate();
     const { auth } = useAuth();
+
     const navigate = useNavigate();
+    const goBack = () => navigate(-1);
 
     const getUser = async () => {
         try {
@@ -164,7 +166,7 @@ const CreateArticle = () => {
             setSectionId("");
             setSubjectId("");
             // navigate("/home/");
-            // navigate("/home/account/" + auth.username);
+            navigate("/home/account/" + auth.username);
             } catch (err) {
             console.log(`Error in post: ${err.message}`);
             }
@@ -250,8 +252,8 @@ const CreateArticle = () => {
                 id="outlined-multiline-flexible"
                 label="Content"
                 multiline
-                rows={10}
-                style={{ width: "80%" }}
+                rows={30}
+                style={{ width: "90%"}}
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
             />
@@ -260,6 +262,7 @@ const CreateArticle = () => {
                 { errorMessage && <Typography style={{ color: "red", paddingBottom: "100px" }} gutterBottom variant="h7">{errorMessage}</Typography> }
             </div>
             <Button style={{ marginTop: "10px" }} variant="outlined" onClick={(e) => {handleSubmit(e)}}>Create</Button>
+            <Button style={{ marginTop: "10px" }} variant="outlined"  onClick={goBack}>Go Back</Button>
         </Box>
       
     </main>

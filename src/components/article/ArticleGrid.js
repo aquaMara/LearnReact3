@@ -1,19 +1,27 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import TopNavigation from "../TopNavigation";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import MissingData from "../MissingData";
-import { Box } from "@mui/system";
+import { Button } from "@mui/material";
 import { Grid } from "@mui/material";
 import { Container } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Rating } from "@mui/material";
+import { styled } from '@mui/material/styles';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import "../../styles/BaseComponents.css";
+
+import { useNavigate } from "react-router-dom";
 
 const ArticleGrid = () => {
 
   const { sectionId } = useParams();
+
+  const navigate = useNavigate();
+  const goBack = () => navigate(-1);
 
   const axiosPrivate = useAxiosPrivate();
   const [articles, setArticles] = useState([]);
@@ -46,10 +54,17 @@ const ArticleGrid = () => {
     getArticles();
   }, [])
 
-
+  const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: '#ff6d75',
+    },
+    '& .MuiRating-iconHover': {
+      color: '#ff3d47',
+    },
+  });
 
   return (
-    <Container disableGutters maxWidth={"100%"} className="container--articles">
+    <Container disableGutters maxWidth={"100%"} style={{height: "100vh"}} className="container--articles">
       {
         articles.length === 0 ? ( <MissingData /> ) 
         : (
@@ -61,13 +76,20 @@ const ArticleGrid = () => {
               <h4>{item.heading}</h4>
               <p>******</p>
               <p>{(item.content).length <=225 ? item.content : `${ (item.content).slice(0,225) }...`}</p>
+              <StyledRating
+                name="customized-color" defaultValue={1} precision={0.5}
+                value={item.rating} readOnly
+                icon={<FavoriteIcon fontSize="inherit" />}
+                emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+              />
             </Link>
           </Grid>
           ))}            
       </Grid>
+        <Button onClick={goBack}>Go Back</Button>
         <Link to={"/home/"} className="link">
-          To all subjects
-        </Link>
+          <Button>To all subjects</Button>
+        </Link> 
       </>
       )
     }
@@ -76,3 +98,4 @@ const ArticleGrid = () => {
 }
 
 export default ArticleGrid
+// <Rating name="half-rating-read" precision={0.5} defaultValue={0} value={item.rating} readOnly />
